@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 public class ItemDataLoader : MonoBehaviour
 {
     [SerializeField]
-    private string jsonFileName = "Items";      //Resources Æú´õ¿¡¼­ °¡Á®¿Ã JSON ÆÄÀÏ ÀÌ¸§
+    private string jsonFileName = "Items";      //Resources í´ë”ì—ì„œ ê°€ì ¸ì˜¬ JSON íŒŒì¼ ì´ë¦„
 
     private List<ItemData> itemList;
 
@@ -18,35 +18,35 @@ public class ItemDataLoader : MonoBehaviour
 
     void LoadItemData()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);       //TextAsset ÇüÅÂ·Î Json ÆÄÀÏÀ» ·ÎµùÇÑ´Ù.
+        TextAsset jsonFile = Resources.Load<TextAsset>(jsonFileName);       //TextAsset í˜•íƒœë¡œ Json íŒŒì¼ì„ ë¡œë”©í•œë‹¤.
 
-        if (jsonFile != null)                       //ÆÄÀÏ ÀĞÀ» ¶§´Â Null °ª Ã³¸®¸¦ ÇÑ´Ù.
+        if (jsonFile != null)                       //íŒŒì¼ ì½ì„ ë•ŒëŠ” Null ê°’ ì²˜ë¦¬ë¥¼ í•œë‹¤.
         {
-            //¿øº» ÅØ½ºÆ®¿¡¼­ UTF-8·Î º¯È¯ Ã³¸®
+            //ì›ë³¸ í…ìŠ¤íŠ¸ì—ì„œ UTF-8ë¡œ ë³€í™˜ ì²˜ë¦¬
             byte[] bytes = Encoding.Default.GetBytes(jsonFile.text);
             string correntText = Encoding.UTF8.GetString(bytes);
 
-            //º¯È¯µÈ ÅØ½ºÆ® »ç¿ë
+            //ë³€í™˜ëœ í…ìŠ¤íŠ¸ ì‚¬ìš©
             itemList = JsonConvert.DeserializeObject<List<ItemData>>(correntText);
 
-            Debug.Log($"·ÎµåµÈ ¾ÆÀÌÅÛ ¼ö : {itemList.Count}");
+            Debug.Log($"ë¡œë“œëœ ì•„ì´í…œ ìˆ˜ : {itemList.Count}");
 
             foreach (var item in itemList)
             {
-                Debug.Log($"¾ÆÀÌÅÛ: {EncodeKorean(item.itemName)}, ¼³¸í : {EncodeKorean(item.description)}");
+                Debug.Log($"ì•„ì´í…œ: {EncodeKorean(item.itemName)}, ì„¤ëª… : {EncodeKorean(item.description)}");
             }
         }
         else
         {
-            Debug.LogError($"JSON ÆÄÀÏÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù. : {jsonFileName}");
+            Debug.LogError($"JSON íŒŒì¼ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. : {jsonFileName}");
         }
     }
 
-    //ÇÑ±Û ÀÌÄÚµùÀ» À§ÇÑ ÇïÆÛ ÇÔ¼ö
+    //í•œê¸€ ì´ì½”ë”©ì„ ìœ„í•œ í—¬í¼ í•¨ìˆ˜
     private string EncodeKorean(string text)
     {
-        if (string.IsNullOrEmpty(text)) return "";      //ÅØ½ºÆ®°¡ NULL °ªÀÌ¸é ÇÔ¼ö¸¦ ³¡³½´Ù.
-        byte[] bytes = Encoding.Default.GetBytes(text); //stringÀ» Byte ¹è¿­·Î º¯È¯ÇÑ ÈÄ
-        return Encoding.UTF8.GetString(bytes);          //ÀÎÄÚµùÀ» UTF8·Î ¹Ù²Û´Ù.
+        if (string.IsNullOrEmpty(text)) return "";      //í…ìŠ¤íŠ¸ê°€ NULL ê°’ì´ë©´ í•¨ìˆ˜ë¥¼ ëë‚¸ë‹¤.
+        byte[] bytes = Encoding.Default.GetBytes(text); //stringì„ Byte ë°°ì—´ë¡œ ë³€í™˜í•œ í›„
+        return Encoding.UTF8.GetString(bytes);          //ì¸ì½”ë”©ì„ UTF8ë¡œ ë°”ê¾¼ë‹¤.
     }
 }

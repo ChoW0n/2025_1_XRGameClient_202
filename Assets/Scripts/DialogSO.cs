@@ -8,10 +8,10 @@ public class DialogSO : ScriptableObject
     public int id;
     public string characterName;
     public string text;
-    public int nextld;
+    public int nextId;
     public List<DialogChoiceSO> choices = new List<DialogChoiceSO> ();
     public Sprite portrait;
 
-    [Tooltip("ÃÊ»óÈ­ ¸®¼Ò½º °æ·Î (Resources Æú´õ ³»ÀÇ °æ·Î)")]
+    [Tooltip("ì´ˆìƒí™” ë¦¬ì†ŒìŠ¤ ê²½ë¡œ (Resources í´ë” ë‚´ì˜ ê²½ë¡œ)")]
     public string portraitPath;
 }
